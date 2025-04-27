@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 
 export default function Home() {
   const [messages, setMessages] = useState([
-    { role: 'assistant', content: '👋 Hi there! Welcome to YourEnglishTutor. Feel free to chat in English or Vietnamese!' }
+    { role: 'assistant', content: '👋 Xin chào, mình là Your English Tutor. Cùng học tiếng Anh nhé!' }
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
