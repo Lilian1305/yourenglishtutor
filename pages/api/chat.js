@@ -1,6 +1,6 @@
 // pages/api/chat.js
 
-import { systemPrompt } from '../../systemPrompt'; // 🔥 đã fix đúng đường dẫn!
+import { systemPrompt } from '../../systemPrompt';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -18,7 +18,7 @@ export default async function handler(req, res) {
         Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
       },
       body: JSON.stringify({
-        model: 'gpt-4o', // hoặc 'gpt-3.5-turbo' nếu bạn muốn tiết kiệm chi phí
+        model: 'gpt-4o',
         messages: [
           { role: 'system', content: systemPrompt },
           ...messages
@@ -29,4 +29,11 @@ export default async function handler(req, res) {
     });
 
     const data = await response.json();
-    const reply = data.choices[0]?.message?.content ||
+    const reply = data.choices[0]?.message?.content || "Sorry, I didn't catch that. Can you try again?";
+
+    res.status(200).json({ reply });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Something went wrong when calling OpenAI.' });
+  }
+}
