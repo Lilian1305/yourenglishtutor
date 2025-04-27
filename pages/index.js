@@ -46,23 +46,39 @@ export default function Home() {
     <div className="flex flex-col h-screen bg-gradient-to-b from-blue-100 to-white">
       <div className="flex-1 overflow-auto p-4">
         {messages.map((m, i) => (
-          <div
-            key={i}
-            className={`flex ${m.role === 'assistant' ? 'justify-start' : 'justify-end'} mb-2`}
-          >
+          <div key={i} className={`flex items-end ${m.role === 'assistant' ? 'justify-start' : 'justify-end'} mb-4`}>
+            {m.role === 'assistant' && (
+              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-white border border-gray-300 flex items-center justify-center mr-2 text-blue-500 text-sm">
+                🤖
+              </div>
+            )}
             <div
-              className={`max-w-xs px-4 py-2 rounded-2xl ${
+              className={`max-w-xs px-4 py-3 rounded-3xl relative shadow-md ${
                 m.role === 'assistant' ? 'bg-white text-gray-800' : 'bg-blue-500 text-white'
               }`}
+              style={{
+                borderBottomLeftRadius: m.role === 'assistant' ? '0.75rem' : '1.5rem',
+                borderBottomRightRadius: m.role === 'user' ? '0.75rem' : '1.5rem',
+              }}
             >
               {m.content}
             </div>
+            {m.role === 'user' && (
+              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center ml-2 text-white text-sm">
+                😃
+              </div>
+            )}
           </div>
         ))}
         {loading && (
-          <div className="flex justify-start mb-2">
-            <div className="bg-white text-gray-500 px-4 py-2 rounded-2xl animate-pulse">
-              Typing...
+          <div className="flex items-end justify-start mb-4">
+            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-white border border-gray-300 flex items-center justify-center mr-2 text-blue-500 text-sm">
+              🤖
+            </div>
+            <div className="flex space-x-2">
+              <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+              <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-150"></div>
+              <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-300"></div>
             </div>
           </div>
         )}
