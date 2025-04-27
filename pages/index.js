@@ -44,10 +44,10 @@ export default function Home() {
 
   return (
     <div
-      className="flex items-center justify-center min-h-screen bg-cover bg-center"
-      style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1600585154340-be6161c57936?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80)' }}
+      className="min-h-screen flex items-center justify-center bg-cover bg-center"
+      style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1618220179428-22790b461013?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80)' }}
     >
-      <div className="flex flex-col h-[600px] w-[380px] sm:w-[450px] bg-white/90 rounded-3xl shadow-2xl overflow-hidden">
+      <div className="flex flex-col h-[600px] w-[400px] bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl overflow-hidden">
         <div className="flex-1 overflow-auto p-4">
           {messages.map((m, i) => (
             <div key={i} className={`flex items-end ${m.role === 'assistant' ? 'justify-start' : 'justify-end'} mb-4`}>
