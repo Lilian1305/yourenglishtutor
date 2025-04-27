@@ -44,15 +44,15 @@ export default function Home() {
 
   return (
     <div
-      className="min-h-screen flex flex-col bg-gray-100"
+      className="min-h-screen flex flex-col items-center justify-center"
       style={{
-        backgroundImage: 'url(https://images.unsplash.com/photo-1618220179428-22790b461013?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80)',
+        backgroundImage: 'url(https://images.unsplash.com/photo-1600585154340-be6161c57936?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
     >
-      <div className="flex-1 flex flex-col items-center justify-start pt-10 backdrop-blur-md bg-white/70 min-h-screen">
-        <div className="w-full max-w-2xl flex flex-col p-4 space-y-4 overflow-auto">
+      <div className="flex flex-col w-full max-w-2xl h-[80vh] bg-white/80 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden">
+        <div className="flex-1 overflow-auto p-6 space-y-4">
           {messages.map((m, i) => (
             <div key={i} className={`flex ${m.role === 'assistant' ? 'justify-start' : 'justify-end'}`}>
               <div className={`p-4 rounded-2xl shadow ${m.role === 'assistant' ? 'bg-white text-gray-800' : 'bg-blue-500 text-white'}`}>
@@ -69,7 +69,7 @@ export default function Home() {
           )}
           <div ref={chatEndRef} />
         </div>
-        <div className="w-full max-w-2xl p-4 flex items-center space-x-2">
+        <div className="w-full p-4 flex items-center space-x-2 border-t bg-white/90">
           <input
             type="text"
             value={input}
