@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 
 export default function Home() {
   const [messages, setMessages] = useState([
-    { role: 'assistant', content: '👋 Hi there! I am YourEnglishTutor. Feel free to chat with me in English or Vietnamese!' }
+    { role: 'assistant', content: '👋 Hi there! Welcome to YourEnglishTutor. Feel free to chat in English or Vietnamese!' }
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -44,61 +44,43 @@ export default function Home() {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center bg-cover bg-center"
-      style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1618220179428-22790b461013?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80)' }}
+      className="min-h-screen flex flex-col bg-gray-100"
+      style={{
+        backgroundImage: 'url(https://images.unsplash.com/photo-1618220179428-22790b461013?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
     >
-      <div className="flex flex-col h-[600px] w-[400px] bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl overflow-hidden">
-        <div className="flex-1 overflow-auto p-4">
+      <div className="flex-1 flex flex-col items-center justify-start pt-10 backdrop-blur-md bg-white/70 min-h-screen">
+        <div className="w-full max-w-2xl flex flex-col p-4 space-y-4 overflow-auto">
           {messages.map((m, i) => (
-            <div key={i} className={`flex items-end ${m.role === 'assistant' ? 'justify-start' : 'justify-end'} mb-4`}>
-              {m.role === 'assistant' && (
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-white border border-gray-300 flex items-center justify-center mr-2 text-blue-500 text-sm">
-                  🤖
-                </div>
-              )}
-              <div
-                className={`max-w-xs px-4 py-3 rounded-3xl relative shadow ${
-                  m.role === 'assistant' ? 'bg-white text-gray-800' : 'bg-blue-500 text-white'
-                }`}
-                style={{
-                  borderBottomLeftRadius: m.role === 'assistant' ? '0.75rem' : '1.5rem',
-                  borderBottomRightRadius: m.role === 'user' ? '0.75rem' : '1.5rem',
-                }}
-              >
+            <div key={i} className={`flex ${m.role === 'assistant' ? 'justify-start' : 'justify-end'}`}>
+              <div className={`p-4 rounded-2xl shadow ${m.role === 'assistant' ? 'bg-white text-gray-800' : 'bg-blue-500 text-white'}`}>
                 {m.content}
               </div>
-              {m.role === 'user' && (
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center ml-2 text-white text-sm">
-                  😃
-                </div>
-              )}
             </div>
           ))}
           {loading && (
-            <div className="flex items-end justify-start mb-4">
-              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-white border border-gray-300 flex items-center justify-center mr-2 text-blue-500 text-sm">
-                🤖
-              </div>
-              <div className="flex space-x-2">
-                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-150"></div>
-                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-300"></div>
+            <div className="flex justify-start">
+              <div className="p-4 rounded-2xl shadow bg-white text-gray-400 italic">
+                Typing...
               </div>
             </div>
           )}
           <div ref={chatEndRef} />
         </div>
-        <div className="flex p-3 border-t bg-white">
+        <div className="w-full max-w-2xl p-4 flex items-center space-x-2">
           <input
+            type="text"
             value={input}
             onChange={e => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="flex-1 border border-gray-300 rounded-full p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
-            placeholder="Type in English or Vietnamese..."
+            placeholder="Type your message..."
+            className="flex-1 border border-gray-300 rounded-full p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
           <button
             onClick={sendMessage}
-            className="ml-2 bg-blue-500 hover:bg-blue-600 text-white rounded-full px-4 py-2 text-sm font-semibold"
+            className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-full font-semibold text-sm"
           >
             Send
           </button>
