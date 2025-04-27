@@ -44,11 +44,12 @@ export default function Home() {
 
   return (
     <div
-      className="min-h-screen flex flex-col items-center justify-center"
+      className="min-h-screen flex flex-col items-center justify-center bg-gray-100"
       style={{
-        backgroundImage: 'url(https://images.unsplash.com/photo-1600585154340-be6161c57936?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80)',
+        backgroundImage: "url('https://images.unsplash.com/photo-1600585154340-be6161c57936?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
       }}
     >
       <div className="flex flex-col w-full max-w-2xl h-[80vh] bg-white/80 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden">
